@@ -189,7 +189,7 @@ dependencies = [
 
 [[package]]
 name = "csv-to-usv"
-version = "1.1.0"
+version = "1.1.1"
 dependencies = [
  "criterion",
  "csv",

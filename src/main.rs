@@ -73,6 +73,7 @@
 //! ### Is USV aiming to become a standard?
 //!
 //! Yes and we've submitted the first draft of the USV standard to the IETF:
+//! [link](https://datatracker.ietf.org/doc/draft-unicode-separated-values/).
 //!
 //! ## Help wanted
 //!

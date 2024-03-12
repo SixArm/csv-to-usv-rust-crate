@@ -30,7 +30,7 @@ fn bench_example(c: &mut Criterion){
     let unit_length = 10;
     let unit_count = 1000;
     let record_count = 1000;
-   
+
     let csv_data = random_csv_data(unit_length, unit_count, record_count);
 
     let mut group = c.benchmark_group(

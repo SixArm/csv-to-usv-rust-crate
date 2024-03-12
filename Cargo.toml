@@ -17,8 +17,8 @@ csv = "1"
 usv = ">=0.5"
 
 [dev-dependencies]
-criterion = "*"
-rand = "*"
+criterion = ">= 0.5"
+rand = ">= 0.8"
 
 [[bench]]
 name = "example"

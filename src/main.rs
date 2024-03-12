@@ -1,6 +1,7 @@
 //! # csv-to-usv
 //!
-//! Convert Comma Separated Values (CSV) to [Unicode Separated Values (USV)]([Unicode Separated Values (USV)](https://github.com/sixarm/usv).
+//! Convert Comma Separated Values (CSV) to [Unicode Separated Values
+//! (USV)]([Unicode Separated Values (USV)](https://github.com/sixarm/usv).
 //!
 //! Syntax:
 //!
@@ -15,13 +16,14 @@
 //! ```
 //!
 //! ## Install
-//! 
+//!
 //! Install:
 //!
 //! ```sh
 //! cargo install csv-to-usv
 //! ```
-//! Link: [https://crates.io/crates/csv-to-usv](https://crates.io/crates/csv-to-usv)
+//! Link:
+//! [https://crates.io/crates/csv-to-usv](https://crates.io/crates/csv-to-usv)
 //!
 //! ## Example
 //!
@@ -45,57 +47,53 @@
 //! a␟b␟c␟␞d␟e␟f␟␞g␟h␟i␟␞
 //! ```
 //!
+//! ## FAQ
+//!
+//! ### When to use this command?
+//!
+//! Use this command when you want to convert from CSV to USV.
+//!
+//! A typical use case is when you have CSV data, such as a spreadsheet export,
+//! and you want to convert it to USV, such as to make the data easier to view,
+//! or edit, or maintain.
+//!
+//! Our real-world use case is converting a bunch of CSV spreadsheet exports
+//! from a variety of programs, including Excel, to USV so we're better-able to
+//! handle quoting, and multi-line data units, and Unicode characters in a wide
+//! variety of human languages.
+//!
+//! ### Is there a similar command to convert from USV to CSV?
+//!
+//! Yes: [usv-to-csv](https://crates.io/crates/usv-to-csv).
+//!
+//! ### Why use USV instead of CSV?
+//!
+//! See the [USV](https://github.com/sixarm/usv).
+//!
+//! ### Is USV aiming to become a standard?
+//!
+//! Yes and we've submitted the first draft of the USV standard to the IETF:
+//!
+//! ## Help wanted
+//!
+//! Constructive feedback welcome. Pull requests and feature requests welcome.
+//!
+//! ## Tracking
+//!
+//! * Package: csv-to-usv-rust-crate
+//! * Version: 1.1.0
+//! * Created: 2024-03-09-13:33:20Z
+//! * Updated: 2024-03-12T12:55:19Z
+//! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
+//! * Contact: Joel Parker Henderson (joel@sixarm.com)
 
-use std::io::{Read, stdin}; 
-//use usv::*;
-
-fn csv_to_usv(csv: &String) -> String {
-    let mut s = String::new();
-    let mut reader = csv::ReaderBuilder::new()
-    .has_headers(false)
-    .from_reader(csv.as_bytes());
-    for result in reader.records() {
-        if let Ok(record) = result {
-            for unit in record.iter() {
-                s += &format!("{}␟", unit);
-            }
-            s += "␞";
-        }
-    }
-    s
-}
+use csv_to_usv::csv_to_usv;
+use std::io::{Read, stdin};
 
 fn main() -> std::io::Result<()> {
-    let mut stdin = stdin().lock(); 
+    let mut stdin = stdin().lock();
     let mut s = String::new();
     stdin.read_to_string(&mut s)?;
     println!("{}", csv_to_usv(&s));
     Ok(())
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn simple() {
-        let csv = String::from("ab,cd,ef\ngh,ij,kl\n");
-        let usv = String::from("ab␟cd␟ef␟␞gh␟ij␟kl␟␞");
-        assert_eq!(csv_to_usv(&csv), usv);
-    }
-
-    #[test]
-    fn quotes() {
-        let csv = String::from("\"ab\"\"cd\"\"ef\"\n");
-        let usv = String::from("ab\"cd\"ef␟␞");
-        assert_eq!(csv_to_usv(&csv), usv);
-    }
-
-    #[test]
-    fn commas() {
-        let csv = String::from("\"ab,cd,ef\"\n");
-        let usv = String::from("ab,cd,ef␟␞");
-        assert_eq!(csv_to_usv(&csv), usv);
-    }
-
 }

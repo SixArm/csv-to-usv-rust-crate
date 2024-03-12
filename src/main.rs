@@ -82,7 +82,7 @@
 //! ## Tracking
 //!
 //! * Package: csv-to-usv-rust-crate
-//! * Version: 1.1.1
+//! * Version: 1.1.2
 //! * Created: 2024-03-09-13:33:20Z
 //! * Updated: 2024-03-12T12:55:19Z
 //! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more

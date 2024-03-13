@@ -44,7 +44,9 @@
 //! Output:
 //!
 //! ```usv
-//! a␟b␟c␟␞d␟e␟f␟␞g␟h␟i␟␞
+//! a␟b␟c␟␞
+//! d␟e␟f␟␞
+//! g␟h␟i␟␞
 //! ```
 //!
 //! ## FAQ
@@ -82,9 +84,9 @@
 //! ## Tracking
 //!
 //! * Package: csv-to-usv-rust-crate
-//! * Version: 1.1.2
+//! * Version: 1.1.4
 //! * Created: 2024-03-09-13:33:20Z
-//! * Updated: 2024-03-12T12:55:19Z
+//! * Updated: 2024-03-13T12:06:01Z
 //! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 //! * Contact: Joel Parker Henderson (joel@sixarm.com)
 

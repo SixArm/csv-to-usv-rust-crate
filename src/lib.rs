@@ -8,7 +8,7 @@ pub fn csv_to_usv(csv: &String) -> String {
             for unit in record.iter() {
                 s += &format!("{}␟", unit);
             }
-            s += "␞";
+            s += "␞\n";
         }
     }
     s
@@ -21,21 +21,21 @@ mod tests {
     #[test]
     fn simple() {
         let csv = String::from("ab,cd,ef\ngh,ij,kl\n");
-        let usv = String::from("ab␟cd␟ef␟␞gh␟ij␟kl␟␞");
+        let usv = String::from("ab␟cd␟ef␟␞\ngh␟ij␟kl␟␞\n");
         assert_eq!(csv_to_usv(&csv), usv);
     }
 
     #[test]
     fn quotes() {
         let csv = String::from("\"ab\"\"cd\"\"ef\"\n");
-        let usv = String::from("ab\"cd\"ef␟␞");
+        let usv = String::from("ab\"cd\"ef␟␞\n");
         assert_eq!(csv_to_usv(&csv), usv);
     }
 
     #[test]
     fn commas() {
         let csv = String::from("\"ab,cd,ef\"\n");
-        let usv = String::from("ab,cd,ef␟␞");
+        let usv = String::from("ab,cd,ef␟␞\n");
         assert_eq!(csv_to_usv(&csv), usv);
     }
 

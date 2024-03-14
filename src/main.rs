@@ -6,16 +6,40 @@
 //! Syntax:
 //!
 //! ```sh
-//! stdin | csv-to-usv | stdout
+//! stdin | csv-to-usv [options] | stdout
 //! ```
 //!
 //! Example:
 //!
 //! ```sh
+//! cat example.csv | csv-to-usv
+//! ```
+//!
+//! Example with output to a file:
+//!
+//! ```sh
 //! cat example.csv | csv-to-usv > example.usv
 //! ```
 //!
-//! ## Install
+//! Example with custom delimiter:
+//!
+//! ```sh
+//! cat example.csv | csv-to-usv --delimiter ";"
+//! ```
+//!
+//! ## Options
+//!
+//! * -d, --delimiter <delimiter> : Set the delimiter character [default: ";"]
+//!
+//! * -h, --help : Print help
+//!
+//! * -V, --version : Print version
+//!
+//! * -v, --verbose... : Set the verbosity level: 0=none, 1=error, 2=warn, 3=info, 4=debug, 5=trace. Example: --verbose …
+//!
+//! * --test : Print test output for debugging, verifying, tracing, and the like. Example: --test
+//!
+//! //! ## Install
 //!
 //! Install:
 //!
@@ -84,19 +108,32 @@
 //! ## Tracking
 //!
 //! * Package: csv-to-usv-rust-crate
-//! * Version: 1.1.4
+//! * Version: 1.2.0
 //! * Created: 2024-03-09-13:33:20Z
-//! * Updated: 2024-03-13T12:06:01Z
+//! * Updated: 2024-03-14T13:38:46Z
 //! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 //! * Contact: Joel Parker Henderson (joel@sixarm.com)
 
-use csv_to_usv::csv_to_usv;
+//// log
+#[macro_use]
+extern crate log;
+extern crate env_logger;
+
+use csv_to_usv::csv_to_usv_with_delimiter;
 use std::io::{Read, stdin};
 
+pub mod app {
+    pub mod args;
+    pub mod clap;
+    pub mod log;
+}
+
 fn main() -> std::io::Result<()> {
+    let args: crate::app::args::Args = crate::app::clap::clap();
+    if args.test { println!("{:?}", args); }
     let mut stdin = stdin().lock();
     let mut s = String::new();
     stdin.read_to_string(&mut s)?;
-    println!("{}", csv_to_usv(&s));
+    print!("{}", csv_to_usv_with_delimiter(&s, args.delimiter));
     Ok(())
 }

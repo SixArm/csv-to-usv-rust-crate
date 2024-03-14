@@ -1,6 +1,6 @@
 [package]
 name = "csv-to-usv"
-version = "1.1.4"
+version = "1.2.0"
 edition = "2021"
 authors = ["Joel Parker Henderson <joel@joelparkerhenderson.com>"]
 description = "CVS to USV: Convert Comma Separated Values (CSV) to Unicode Separated Values (USV) for data markup, including for spreadsheets, databases, text files, and more."
@@ -13,12 +13,26 @@ categories = ["command-line-utilities", "encoding", "data-structures", "parsing"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+# csv: Comma Separated Values
 csv = "1"
+
+# usv: Unicode Separated Values
 usv = "=0.6"
+
+# clap: Command Line Argument Parser
+clap = { version = "4.5.2", features = ["cargo"] }
+
+# log: A Rust library providing a lightweight logging facade
+log = "0.4.21"
+
+# env_logger: A logger that can be configured via environment variables
+env_logger = "0.11.3"
 
 [dev-dependencies]
 criterion = ">= 0.5"
 rand = ">= 0.8"
+once_cell = "1.19.0"
 
 [[bench]]
 name = "example"

@@ -5,14 +5,39 @@ Convert Comma Separated Values (CSV) to [Unicode Separated Values (USV)](https:/
 Syntax:
 
 ```sh
-stdin | csv-to-usv | stdout
+stdin | csv-to-usv [options] | stdout
 ```
 
 Example:
 
 ```sh
+cat example.csv | csv-to-usv
+```
+
+Example with output to a file:
+
+```sh
 cat example.csv | csv-to-usv > example.usv
 ```
+
+Example with custom delimiter:
+
+```sh
+cat example.csv | csv-to-usv --delimiter ";"
+```
+
+
+## Options
+
+* -d, --delimiter <delimiter> : Set the delimiter character [default: ";"]
+
+* -h, --help : Print help
+
+* -V, --version : Print version
+
+* -v, --verbose... : Set the verbosity level: 0=none, 1=error, 2=warn, 3=info, 4=debug, 5=trace. Example: --verbose …
+
+* --test : Print test output for debugging, verifying, tracing, and the like. Example: --test
 
 
 ## Install
@@ -86,8 +111,8 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.1.4
+* Version: 1.2.0
 * Created: 2024-03-09-13:33:20Z
-* Updated: 2024-03-13T12:06:01Z
+* Updated: 2024-03-14T13:38:46Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 * Contact: Joel Parker Henderson (joel@sixarm.com)

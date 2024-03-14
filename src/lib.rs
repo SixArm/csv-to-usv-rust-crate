@@ -1,8 +1,22 @@
-pub fn csv_to_usv(csv: &String) -> String {
+pub fn csv_to_usv<
+    S: AsRef<str> + Sized
+>(
+    csv: S
+) -> String {
+    csv_to_usv_with_delimiter(csv, b',')
+}
+
+pub fn csv_to_usv_with_delimiter<
+    S: AsRef<str> + Sized
+>(
+    csv: S,
+    delimiter: u8,
+) -> String {
     let mut s = String::new();
     let mut reader = csv::ReaderBuilder::new()
     .has_headers(false)
-    .from_reader(csv.as_bytes());
+    .delimiter(delimiter)
+    .from_reader(csv.as_ref().as_bytes());
     for result in reader.records() {
         if let Ok(record) = result {
             for unit in record.iter() {

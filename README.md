@@ -101,7 +101,7 @@ See the documentation for [USV](https://github.com/sixarm/usv).
 
 ### Is USV aiming to become a standard?
 
-Yes and we've submitted the first draft of the USV standard to the IETF:
+Yes, USV is submitted to IETF.org as an Internet-Draft work in progress:
 [link](https://datatracker.ietf.org/doc/draft-unicode-separated-values/).
 
 ## Help wanted

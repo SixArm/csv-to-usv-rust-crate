@@ -20,7 +20,8 @@ pub fn csv_to_usv_with_delimiter<
     for result in reader.records() {
         if let Ok(record) = result {
             for unit in record.iter() {
-                s += &format!("{}␟", unit);
+                s += &unit;
+                s += "␟";
             }
             s += "␞\n";
         }

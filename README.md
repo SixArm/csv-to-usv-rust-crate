@@ -55,7 +55,7 @@ Link: [https://crates.io/crates/csv-to-usv](https://crates.io/crates/csv-to-usv)
 
 Suppose file example.csv contains:
 
-```usv
+```csv
 a,b,c
 d,e,f
 g,h,i

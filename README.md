@@ -29,7 +29,25 @@ cat example.csv | csv-to-usv --delimiter ";"
 
 ## Options
 
-* -d, --delimiter <delimiter> : Set the delimiter character [default: ";"]
+Options for USV separators and modifiers:
+
+* -u | --unit-separator : Set the unit separator string.
+
+* -r | --record-separator : Set the record separator string.
+
+Options for USV style sets:
+
+* --style-braces : Set the style to use braces, such as "{US}" for Unit Separator.
+
+* --style-controls : Set the style to use controls, such as "\u{001F}" for Unit Separator.
+
+* --style-symbols : Set the style to use symbols, such as "␟" for Unit Separator.
+
+* --style-liners : Set the style to use liners wrapping every symbol, such as "\n␟\n" for Unit Separator.
+
+* --style-sheets : Set the style similar to spreadsheet sheets, such as "␟" for Unit Separator and "␟\n" for Record Separator.
+
+Options for command line tools:
 
 * -h, --help : Print help
 
@@ -56,9 +74,8 @@ Link: [https://crates.io/crates/csv-to-usv](https://crates.io/crates/csv-to-usv)
 Suppose file example.csv contains:
 
 ```csv
-a,b,c
-d,e,f
-g,h,i
+a,b
+c,d
 ```
 
 Run:
@@ -70,11 +87,21 @@ cat example.csv | csv-to-usv
 Output:
 
 ```usv
-a␟b␟c␟␞
-d␟e␟f␟␞
-g␟h␟i␟␞
+a␟b␟␞c␟d␟␞
 ```
 
+Run:
+
+```sh
+cat example.csv | csv-to-usv --style-sheets
+```
+
+Output:
+
+```usv
+a␟b␟␞
+c␟d␟␞
+```
 
 ## FAQ
 
@@ -111,8 +138,8 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.2.0
+* Version: 1.4.0
 * Created: 2024-03-09T13:33:20Z
-* Updated: 2024-03-14T13:38:46Z
+* Updated: 2024-03-19T17:12:06Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 * Contact: Joel Parker Henderson (joel@sixarm.com)

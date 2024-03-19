@@ -5,6 +5,7 @@
 //! such as being able to start our app with other arg parsers.
 
 use std::default::Default;
+use usv::style::Style;
 
 #[derive(Debug)]
 pub struct Args {
@@ -20,6 +21,11 @@ pub struct Args {
     /// Delimiter character.
     /// Example: ','
     pub(crate) delimiter: u8,
+
+    /// USV Style
+    /// Example: separator strings
+    pub(crate) style: Style,
+
 }
 
 impl Default for Args {
@@ -28,6 +34,7 @@ impl Default for Args {
             test: false,
             log_level: None,
             delimiter: b',',
+            style: Style::default(),
         }
     }
 }

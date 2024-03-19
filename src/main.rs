@@ -29,7 +29,25 @@
 //!
 //! ## Options
 //!
-//! * -d, --delimiter <delimiter> : Set the delimiter character [default: ";"]
+//! Options for USV separators and modifiers:
+//!
+//! * -u | --unit-separator : Set the unit separator string.
+//!
+//! * -r | --record-separator : Set the record separator string.
+//!
+//! Options for USV style sets:
+//!
+//! * --style-braces : Set the style to use braces, such as "{US}" for Unit Separator.
+//!
+//! * --style-controls : Set the style to use controls, such as "\u{001F}" for Unit Separator.
+//!
+//! * --style-symbols : Set the style to use symbols, such as "␟" for Unit Separator.
+//!
+//! * --style-liners : Set the style to use liners wrapping every symbol, such as "\n␟\n" for Unit Separator.
+//!
+//! * --style-sheets : Set the style similar to spreadsheet sheets, such as "␟" for Unit Separator and "␟\n" for Record Separator.
+//!
+//! Options for command line tools:
 //!
 //! * -h, --help : Print help
 //!
@@ -39,7 +57,7 @@
 //!
 //! * --test : Print test output for debugging, verifying, tracing, and the like. Example: --test
 //!
-//! //! ## Install
+//! ## Install
 //!
 //! Install:
 //!
@@ -54,9 +72,8 @@
 //! Suppose file example.csv contains:
 //!
 //! ```csv
-//! a,b,c
-//! d,e,f
-//! g,h,i
+//! a,b
+//! c,d
 //! ```
 //!
 //! Run:
@@ -68,9 +85,20 @@
 //! Output:
 //!
 //! ```usv
-//! a␟b␟c␟␞
-//! d␟e␟f␟␞
-//! g␟h␟i␟␞
+//! a␟b␟␞c␟d␟␞
+//! ```
+//!
+//! Run:
+//!
+//! ```sh
+//! cat example.csv | csv-to-usv --style-sheets
+//! ```
+//!
+//! Output:
+//!
+//! ```usv
+//! a␟b␟␞
+//! c␟d␟␞
 //! ```
 //!
 //! ## FAQ
@@ -108,9 +136,9 @@
 //! ## Tracking
 //!
 //! * Package: csv-to-usv-rust-crate
-//! * Version: 1.2.0
+//! * Version: 1.4.0
 //! * Created: 2024-03-09T13:33:20Z
-//! * Updated: 2024-03-14T13:38:46Z
+//! * Updated: 2024-03-19T17:12:06Z
 //! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 //! * Contact: Joel Parker Henderson (joel@sixarm.com)
 
@@ -134,6 +162,6 @@ fn main() -> std::io::Result<()> {
     let mut stdin = stdin().lock();
     let mut s = String::new();
     stdin.read_to_string(&mut s)?;
-    print!("{}", csv_to_usv_with_delimiter(&s, args.delimiter));
+    print!("{}", csv_to_usv_with_delimiter(&s, args.delimiter, &args.style));
     Ok(())
 }

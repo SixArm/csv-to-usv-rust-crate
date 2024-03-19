@@ -29,6 +29,10 @@
 //!
 //! ## Options
 //!
+//! Options for CSV parsing:
+//! 
+//! * -d | --delimiter : Set the CSV field delimiter character.
+//! 
 //! Options for USV separators and modifiers:
 //!
 //! * -u | --unit-separator : Set the unit separator string.

@@ -44,89 +44,207 @@ fn matches() -> clap::ArgMatches {
         .value_parser(clap::value_parser!(char))
         .action(clap::ArgAction::Set))
     .arg(Arg::new("unit-separator")
-        .help("Set the unit separator string")
+        .help("Set the unit separator (US) string")
         .short('u')
-        .long("unit-separator")
-        .default_value(usv::UNIT_SEPARATOR_SYMBOL_STR)
+        .long("us")
         .action(clap::ArgAction::Set))
     .arg(Arg::new("record-separator")
-        .help("Set the record separator string.")
+        .help("Set the record separator (RS) string.")
         .short('r')
-        .long("record-separator")
-        .default_value(usv::RECORD_SEPARATOR_SYMBOL_STR)
+        .long("rs")
         .action(clap::ArgAction::Set))
     .arg(Arg::new("group-separator")
-        .help("Set the group separator string. Not currently used. Reserved for future use.")
+        .help("Set the group separator (GS) string.")
         .short('g')
-        .long("group-separator")
-        .default_value(usv::GROUP_SEPARATOR_SYMBOL_STR)
+        .long("gs")
         .action(clap::ArgAction::Set))
     .arg(Arg::new("file-separator")
-        .help("Set the file separator string. Not currently used. Reserved for future use.")
+        .help("Set the file separator (FS) string.")
         .short('f')
-        .long("file-separator")
-        .default_value(usv::FILE_SEPARATOR_SYMBOL_STR)
+        .long("fs")
         .action(clap::ArgAction::Set))
     .arg(Arg::new("escape")
-        .help("Set the escape string. Not currently used. Reserved for future use.")
-        .long("escape")
-        .default_value(usv::ESCAPE_SYMBOL_STR)
+        .help("Set the escape (ESC) string.")
+        .short('e')
+        .long("esc")
         .action(clap::ArgAction::Set))
     .arg(Arg::new("end-of-transmission")
-        .help("Set the end-of-transmission string. Not currently used. Reserved for future use.")
-        .long("end-of-transmission")
-        .default_value(usv::END_OF_TRANSMISSION_SYMBOL_STR)
+        .help("Set the end of transmission (EOT) string.")
+        .short('z')
+        .long("eot")
         .action(clap::ArgAction::Set))
-    .arg(Arg::new("style-braces")
-        .help(r#"Set the style to use braces, such as "{US}" for Unit Separator."#)
-        .long("style-braces")
-        .conflicts_with_all(["style-controls", "style-symbols", "style-liners", "style-sheets"])
+    .arg(Arg::new("style-symbols")
+        .help(r#"Show marks as symbols, such as "␟" for Unit Separator."#)
+        .long("style-symbols")
+        .conflicts_with_all([
+            "style-braces", 
+            "style-controls"
+        ])
         .action(clap::ArgAction::SetTrue))
     .arg(Arg::new("style-controls")
-        .help(r#"Set the style to use controls, such as "\u{001F}" for Unit Separator."#)
+        .help(r#"Show marks as controls, such as "\u001F" for Unit Separator. This is most like ASCII Separated Values (ASV)."#)
         .long("style-controls")
-        .conflicts_with_all(["style-braces", "style-symbols", "style-liners", "style-sheets"])
+        .conflicts_with_all([
+            "style-braces", 
+            "style-symbols",
+        ])
         .action(clap::ArgAction::SetTrue))
-    .arg(Arg::new("style-symbols")
-        .help(r#"Set the style to use symbols, such as "␟" for Unit Separator."#)
-        .long("style-symbols")
-        .conflicts_with_all(["style-braces", "style-controls", "style-liners", "style-sheets"])
+    .arg(Arg::new("style-braces")
+        .help(r#"Show marks as braces, such as "{US}" for Unit Separator. This is to help plain text readers, and is not USV output."#)
+        .long("style-braces")
+        .conflicts_with_all([
+            "style-controls", 
+            "style-symbols",
+        ])
         .action(clap::ArgAction::SetTrue))
-    .arg(Arg::new("style-liners")
-        .help(r#"Set the style to use liners wrapping every marker, such as "\n␟\n" for Unit Separator."#)
-        .long("style-liners")
-        .conflicts_with_all(["style-braces", "style-controls", "style-symbols", "style-sheets"])
+    .arg(Arg::new("layout-units")
+        .help(r#"Show each unit on one line. This can be helpful for line-oriented tools."#)
+        .long("layout-units")
+        .conflicts_with_all([
+            "layout-records",
+            "layout-groups",
+            "layout-files",
+            "layout-0",
+            "layout-1",
+            "layout-2",
+            ])
         .action(clap::ArgAction::SetTrue))
-    .arg(Arg::new("style-sheets")
-        .help(r#"Set the style similar to spreadsheet sheets, such as "␟" for Unit Separator and "␟\n" for Record Separator."#)
-        .long("style-sheets")
-        .conflicts_with_all(["style-braces", "style-controls", "style-symbols", "style-liners"])
+        .arg(Arg::new("layout-records")
+        .help(r#"Show each record on one line. This is like a typical spreadsheet sheet export."#)
+        .long("layout-records")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-groups",
+            "layout-files",
+            "layout-0",
+            "layout-1",
+            "layout-2",
+            ])
+        .action(clap::ArgAction::SetTrue))
+        .arg(Arg::new("layout-groups")
+        .help(r#"Show each group on one line. This can be helpful for folio-oriented tools."#)
+        .long("layout-groups")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-records",
+            "layout-files",
+            "layout-0",
+            "layout-1",
+            "layout-2",
+            ])
+        .action(clap::ArgAction::SetTrue))
+        .arg(Arg::new("layout-files")
+        .help(r#"Show each file on one line. This can be helpful for archive-oriented tools."#)
+        .long("layout-files")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-records",
+            "layout-groups",
+            "layout-0",
+            "layout-1",
+            "layout-2",
+            ])
+        .action(clap::ArgAction::SetTrue))
+        .arg(Arg::new("layout-0")
+        .help(r#"Show each item with no line around it. This is no layout, in other words one long line."#)
+        .long("layout-0")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-records",
+            "layout-groups",
+            "layout-files",
+            "layout-1",
+            "layout-2",
+            ])
+        .action(clap::ArgAction::SetTrue))
+        .arg(Arg::new("layout-1")
+        .help(r#"Show each item with one line around it. This is like single-space lines for long form text."#)
+        .long("layout-1")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-records",
+            "layout-groups",
+            "layout-files",
+            "layout-0",
+            "layout-2",
+            ])
+        .action(clap::ArgAction::SetTrue))
+        .arg(Arg::new("layout-2")
+        .help(r#"Show each item with two lines around it. This is like double-space lines for long form text."#)
+        .long("layout-2")
+        .conflicts_with_all([
+            "layout-units", 
+            "layout-records",
+            "layout-groups",
+            "layout-files",
+            "layout-0",
+            "layout-1",
+            ])
         .action(clap::ArgAction::SetTrue))
     .get_matches()
 }
 
 fn style(matches: &clap::ArgMatches) -> usv::style::Style {
-    if matches.get_flag("style-braces") {
-        return usv::style::Style::braces()
+    let style = style_trait(matches).style();
+    let mut style = layout_trait(matches).layout(&style);
+    if let Some(x) = matches.get_one::<String>("unit-separator") {
+        style.unit_separator = String::from(x)
     }
-    if matches.get_flag("style-controls") {
-        return usv::style::Style::controls()
+    if let Some(x) = matches.get_one::<String>("record-separator") {
+        style.record_separator = String::from(x)
     }
+    if let Some(x) = matches.get_one::<String>("group-separator") {
+        style.group_separator = String::from(x)
+    }
+    if let Some(x) = matches.get_one::<String>("file-separator") {
+        style.file_separator = String::from(x)
+    }
+    if let Some(x) = matches.get_one::<String>("escape") {
+        style.escape = String::from(x)
+    }
+    if let Some(x) = matches.get_one::<String>("end-of-transmission") {
+        style.end_of_transmission = String::from(x)
+    }
+    style
+}
+
+fn style_trait(matches: &clap::ArgMatches) -> Box<dyn usv::style::StyleTrait> {
     if matches.get_flag("style-symbols") {
-        return usv::style::Style::symbols()
-    }
-    if matches.get_flag("style-liners") {
-        return usv::style::Style::liners()
-    }
-    if matches.get_flag("style-sheets") {
-        return usv::style::Style::sheets()
-    }
-    usv::style::Style {
-        unit_separator: matches.get_one::<String>("unit-separator").expect("unit-separator").to_string(),
-        record_separator: matches.get_one::<String>("record-separator").expect("record-separator").to_string(),
-        group_separator: matches.get_one::<String>("group-separator").expect("group-separator").to_string(),
-        file_separator: matches.get_one::<String>("file-separator").expect("file-separator").to_string(),
-        escape: matches.get_one::<String>("escape").expect("escape").to_string(),
-        end_of_transmission: matches.get_one::<String>("end-of-transmission").expect("end-of-transmission").to_string(),
+        Box::new(usv::style::style_symbols::StyleSymbols)
+    } else 
+    if matches.get_flag("style-controls") {
+        Box::new(usv::style::style_controls::StyleControls)
+    } else 
+    if matches.get_flag("style-braces") {
+        Box::new(usv::style::style_braces::StyleBraces)
+    } else {
+        Box::new(usv::style::style_symbols::StyleSymbols)
     }
 }
+
+fn layout_trait(matches: &clap::ArgMatches) -> Box<dyn usv::layout::LayoutTrait> {
+    if matches.get_flag("layout-0") {
+        Box::new(usv::layout::layout_0::Layout0)
+    } else
+    if matches.get_flag("layout-1") {
+        Box::new(usv::layout::layout_1::Layout1)
+    } else
+    if matches.get_flag("layout-2") {
+        Box::new(usv::layout::layout_2::Layout2)
+    } else
+    if matches.get_flag("layout-units") {
+        Box::new(usv::layout::layout_units::LayoutUnits)
+    } else
+    if matches.get_flag("layout-records") {
+        Box::new(usv::layout::layout_records::LayoutRecords)
+    } else
+    if matches.get_flag("layout-groups") {
+        Box::new(usv::layout::layout_groups::LayoutGroups)
+    } else
+    if matches.get_flag("layout-files") {
+        Box::new(usv::layout::layout_files::LayoutFiles)
+    } else {
+        Box::new(usv::layout::layout_records::LayoutRecords)
+    }
+}
+        

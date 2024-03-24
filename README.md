@@ -20,12 +20,7 @@ Example with output to a file:
 cat example.csv | csv-to-usv > example.usv
 ```
 
-Example with custom delimiter:
-
-```sh
-cat example.csv | csv-to-usv --delimiter ";"
-```
-
+More examples below.
 
 ## Options
 
@@ -35,21 +30,41 @@ Options for CSV parsing:
 
 Options for USV separators and modifiers:
 
-* -u, --unit-separator : Set the unit separator string.
+* -u, --us : Set the unit separator (US) string.
 
-* -r, --record-separator : Set the record separator string.
+* -r, --rs : Set the record separator (RS) string.
 
-Options for USV style sets:
+* -g, --gs : Set the group separator (GS) string.
+
+* -f, --fs : Set the file separator (FS) string.
+
+* -e, --esc : Set the escape (ESC) string.
+
+* -z, --eot : Set the end of transmission (EOT) string.
+
+Options for USV style:
 
 * --style-braces : Set the style to use braces, such as "{US}" for Unit Separator.
 
-* --style-controls : Set the style to use controls, such as "\u{001F}" for Unit Separator.
+* --style-controls : Set the style to use controls, such as "\u{1F}" for Unit Separator.
 
 * --style-symbols : Set the style to use symbols, such as "␟" for Unit Separator.
 
-* --style-liners : Set the style to use liners wrapping every symbol, such as "\n␟\n" for Unit Separator.
+Options for USV layout:
 
-* --style-sheets : Set the style similar to spreadsheet sheets, such as "␟" for Unit Separator and "␟\n" for Record Separator.
+* --layout-0: Show each item with no line around it. This is no layout, in other words one long line.
+
+* --layout-1: Show each item with one line around it. This is like single-space lines for long form text.
+
+* --layout-2: Show each item with two lines around it. This is like double-space lines for long form text.
+
+* --layout-units: Show each unit on one line. This can be helpful for line-oriented tools.
+
+* --layout-records: Show each record on one line. This is like a typical spreadsheet sheet export.
+
+* --layout-groups: Show each group on one line. This can be helpful for folio-oriented tools.
+
+* --layout-files: Show one file on one line. This can be helpful for archive-oriented tools.
 
 Options for command line tools:
 
@@ -60,7 +75,6 @@ Options for command line tools:
 * -v, --verbose... : Set the verbosity level: 0=none, 1=error, 2=warn, 3=info, 4=debug, 5=trace. Example: --verbose …
 
 * --test : Print test output for debugging, verifying, tracing, and the like. Example: --test
-
 
 ## Install
 
@@ -74,6 +88,16 @@ Link: [https://crates.io/crates/csv-to-usv](https://crates.io/crates/csv-to-usv)
 
 
 ## Example
+
+CSV and USV have similar data concepts:
+
+| CSV        | USV    |
+|------------|--------|
+| Cell / Col | Unit   |
+| Line / Row | Record |
+| -          | Group  |
+| -          | File   |
+
 
 Suppose file example.csv contains:
 
@@ -91,20 +115,36 @@ cat example.csv | csv-to-usv
 Output:
 
 ```usv
-a␟b␟␞c␟d␟␞
+a␟b␟␞
+c␟d␟␞
 ```
+
+If you prefer ASCII Separated Values (ASV) with zero-width character controls:
 
 Run:
 
 ```sh
-cat example.csv | csv-to-usv --style-sheets
+cat example.csv | csv-to-usv --style-controls
 ```
 
 Output:
 
 ```usv
-a␟b␟␞
-c␟d␟␞
+a\u{1F}b\u{1F}\u{1E}
+c\u{1F}d\u{1F}\u{1E}
+```
+
+If you prefer to render markers with braces, to see the markers more easily:
+
+```sh
+cat example.csv | csv-to-usv --style-braces
+```
+
+Output:
+
+```usv
+a{US}b{US}{RS}
+c{US}d{US}{RS}
 ```
 
 ## FAQ
@@ -142,8 +182,8 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.4.0
+* Version: 1.5.0
 * Created: 2024-03-09T13:33:20Z
-* Updated: 2024-03-19T17:12:06Z
+* Updated: 2024-03-24T09:45:48Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 * Contact: Joel Parker Henderson (joel@sixarm.com)

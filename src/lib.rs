@@ -1,3 +1,5 @@
+pub mod examples;
+
 use usv::style::Style;
 
 pub fn csv_to_usv<

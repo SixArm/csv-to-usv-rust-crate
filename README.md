@@ -149,6 +149,16 @@ c{US}d{US}{RS}
 
 ## FAQ
 
+### What converters are available?
+
+* [asv-to-usv](https://crates.io/crates/asv-to-usv] & [usv-to-asv](https://crates.io/crates/usv-to-asv)
+
+* [csv-to-usv](https://crates.io/crates/asv-to-csv] & [usv-to-csv](https://crates.io/crates/usv-to-csv)
+
+* [json-to-usv](https://crates.io/crates/json-to-usv] & [usv-to-json](https://crates.io/crates/usv-to-json)
+
+* [xlsx-to-usv](https://crates.io/crates/xlsx-to-usv] & [usv-to-asv](https://crates.io/crates/usv-to-xlsx)
+
 ### When to use this command?
 
 Use this command when you want to convert from CSV to USV.
@@ -161,10 +171,6 @@ Our real-world use case is converting a bunch of CSV spreadsheet exports
 from a variety of programs, including Excel, to USV so we're better-able to
 handle quoting, and multi-line data units, and Unicode characters in a wide
 variety of human languages.
-
-### Is there a similar command to convert from USV to CSV?
-
-Yes: [usv-to-csv](https://crates.io/crates/usv-to-csv).
 
 ### Why use USV instead of CSV?
 

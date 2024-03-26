@@ -188,8 +188,8 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.5.0
+* Version: 1.5.1
 * Created: 2024-03-09T13:33:20Z
-* Updated: 2024-03-24T09:45:48Z
+* Updated: 2024-03-26T17:39:26Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 * Contact: Joel Parker Henderson (joel@sixarm.com)

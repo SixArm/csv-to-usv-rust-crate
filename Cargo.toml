@@ -1,6 +1,6 @@
 [package]
 name = "csv-to-usv"
-version = "1.5.0"
+version = "1.5.1"
 edition = "2021"
 authors = ["Joel Parker Henderson <joel@joelparkerhenderson.com>"]
 description = "CVS to USV: Convert Comma Separated Values (CSV) to Unicode Separated Values (USV) for data markup, including for spreadsheets, databases, text files, and more."
@@ -18,7 +18,7 @@ categories = ["command-line-utilities", "encoding", "data-structures", "parsing"
 csv = "1"
 
 # usv: Unicode Separated Values
-usv = "0.13.12"
+usv = "0.15"
 
 # clap: Command Line Argument Parser
 clap = { version = "4.5.2", features = ["cargo"] }

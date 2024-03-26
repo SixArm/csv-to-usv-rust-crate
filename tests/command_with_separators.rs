@@ -14,7 +14,7 @@ fn command_with_separators_with_short_options() {
         .arg("-z").arg("{EOT}")
         , EXAMPLE_INPUT_RECORDS
     );
-    assert_eq!(actual, usv::examples::EXAMPLE_STYLE_BRACES_RECORDS);
+    assert_eq!(actual, usv::examples::EXAMPLE_RECORDS_STYLE_BRACES);
 }
 
 #[test]
@@ -29,5 +29,5 @@ fn command_with_separators_with_long_options() {
         .arg("--eot").arg("{EOT}")
         , EXAMPLE_INPUT_RECORDS
     );
-    assert_eq!(actual, usv::examples::EXAMPLE_STYLE_BRACES_RECORDS);
+    assert_eq!(actual, usv::examples::EXAMPLE_RECORDS_STYLE_BRACES);
 }

@@ -130,8 +130,8 @@
 //! Output:
 //! 
 //! ```usv
-//! a\u{1F}b\u{1F}\u{1E}
-//! c\u{1F}d\u{1F}\u{1E}
+//! a\u001Fb\u001F\u001E
+//! c\u001Fd\u001F\u001E
 //! ```
 //! 
 //! If you prefer to render markers with braces, to see the markers more easily:
@@ -188,9 +188,9 @@
 //! ## Tracking
 //! 
 //! * Package: csv-to-usv-rust-crate
-//! * Version: 1.5.1
+//! * Version: 1.5.2
 //! * Created: 2024-03-09T13:33:20Z
-//! * Updated: 2024-03-26T17:39:26Z
+//! * Updated: 2024-04-04T03:40:34Z
 //! * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 //! * Contact: Joel Parker Henderson (joel@sixarm.com)
 

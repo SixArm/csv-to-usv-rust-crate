@@ -181,6 +181,11 @@ See the documentation for [USV](https://github.com/sixarm/usv).
 Yes, USV is submitted to IETF.org as an Internet-Draft work in progress:
 [link](https://datatracker.ietf.org/doc/draft-unicode-separated-values/).
 
+### Can I build my own USV tools?
+
+Yes, and you may freely use the
+[USV Rust crate](https://github.com/sixarm/usv-rust-crate).
+
 ## Help wanted
 
 Constructive feedback welcome. Pull requests and feature requests welcome.

@@ -188,6 +188,7 @@ Yes, USV is submitted to IETF.org as an Internet-Draft work in progress:
 ### Can I build my own USV tools?
 
 Yes, and you may freely use the
+[USV RFC](https://github.com/SixArm/usv/tree/main/doc/rfc) and
 [USV Rust crate](https://github.com/sixarm/usv-rust-crate).
 
 ## Help wanted

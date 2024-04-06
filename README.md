@@ -46,7 +46,7 @@ Options for USV style:
 
 * --style-braces : Set the style to use braces, such as "{US}" for Unit Separator.
 
-* --style-controls : Set the style to use controls, such as "\u{1F}" for Unit Separator.
+* --style-controls : Set the style to use controls, such as "\u001F" for Unit Separator.
 
 * --style-symbols : Set the style to use symbols, such as "␟" for Unit Separator.
 

@@ -161,7 +161,7 @@ c{US}d{US}{RS}
 
 * [json-to-usv](https://crates.io/crates/json-to-usv) & [usv-to-json](https://crates.io/crates/usv-to-json)
 
-* [xlsx-to-usv](https://crates.io/crates/xlsx-to-usv) & [usv-to-asv](https://crates.io/crates/usv-to-xlsx)
+* [xlsx-to-usv](https://crates.io/crates/xlsx-to-usv) & [usv-to-xlsx](https://crates.io/crates/usv-to-xlsx)
 
 ### When to use this command?
 
@@ -198,7 +198,7 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.5.3
+* Version: 1.5.4
 * Created: 2024-03-09T13:33:20Z
 * Updated: 2024-04-11T18:17:04Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more

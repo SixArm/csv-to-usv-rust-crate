@@ -34,17 +34,17 @@ Options for CSV parsing:
 
 Options for USV separators and modifiers:
 
-* -u, --us : Set the unit separator (US) string.
+* -u, --unit-separator : Set the unit separator (US) string.
 
-* -r, --rs : Set the record separator (RS) string.
+* -r, --record-separator : Set the record separator (RS) string.
 
-* -g, --gs : Set the group separator (GS) string.
+* -g, --group-separator : Set the group separator (GS) string.
 
-* -f, --fs : Set the file separator (FS) string.
+* -f, --file-separator : Set the file separator (FS) string.
 
-* -e, --esc : Set the escape (ESC) string.
+* -e, --escape : Set the escape (ESC) string.
 
-* -z, --eot : Set the end of transmission (EOT) string.
+* -z, --end-of-transmission : Set the end of transmission (EOT) string.
 
 Options for USV style:
 
@@ -198,8 +198,8 @@ Constructive feedback welcome. Pull requests and feature requests welcome.
 ## Tracking
 
 * Package: csv-to-usv-rust-crate
-* Version: 1.5.2
+* Version: 1.5.3
 * Created: 2024-03-09T13:33:20Z
-* Updated: 2024-04-04T03:40:34Z
+* Updated: 2024-04-11T18:17:04Z
 * License: MIT or Apache-2.0 or GPL-2.0 or GPL-3.0 or contact us for more
 * Contact: Joel Parker Henderson (joel@sixarm.com)
